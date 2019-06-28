@@ -1,0 +1,8 @@
+*.html
+.vs
+\obj
+bin
+*.obj
+*.log
+\packages
+TimerManager.cs
