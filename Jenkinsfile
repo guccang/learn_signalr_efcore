@@ -2,10 +2,19 @@ pipeline {
   agent any
   stages {
     stage('build') {
-      steps {
-        echo 'build'
-        sh '''echo "build project"
+      parallel {
+        stage('build') {
+          steps {
+            echo 'build'
+            sh '''echo "build project"
 dotnet publish -c Debug -o ./bin/Debug'''
+          }
+        }
+        stage('docker build') {
+          steps {
+            echo 'echo docker build'
+          }
+        }
       }
     }
     stage('test') {
