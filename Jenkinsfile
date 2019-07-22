@@ -17,6 +17,7 @@ dotnet asp_signalR_efcore.dll  > server.log &'''
         sh '''echo "run client"
 cd "D:\\Program Files (x86)\\Jenkins\\workspace\\lr_efcore_test_jenkins_blueocean\\signalR_client\\bin\\Debug"
 dotnet signalR_client.dll  > client.log &'''
+        input 'check input'
       }
     }
     stage('deploy') {
