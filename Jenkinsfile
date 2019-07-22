@@ -12,7 +12,7 @@ dotnet publish -c Debug -o ./bin/Debug'''
       steps {
         sh '''echo "run server" 
 cd "D:\\Program Files (x86)\\Jenkins\\workspace\\lr_efcore_test_jenkins_blueocean\\asp_signalR_efcore\\bin\\Debug"
-dotnet asp_signalR_efcore.dll'''
+dotnet asp_signalR_efcore.dll &'''
       }
     }
     stage('deploy') {
