@@ -37,7 +37,7 @@ dotnet signalR_client.dll  > client.log &'''
     }
   }
   environment {
-    SERVER_PATH = 'asp_signalR_efcore\\bin\\Debug'
-    CLIENT_PATH = 'signalR_client\\bin\\Debug'
+    SERVER_PATH = '"asp_signalR_efcore\\bin\\Debug"'
+    CLIENT_PATH = '"signalR_client\\bin\\Debug"'
   }
 }
