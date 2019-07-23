@@ -33,7 +33,6 @@ dotnet signalR_client.dll  > client.log &'''
       steps {
         sh 'echo "deploy"'
         archiveArtifacts(artifacts: '**/bin/Debug/*.*', onlyIfSuccessful: true)
-        junit '**/bin/Debug/*.*'
       }
     }
   }
