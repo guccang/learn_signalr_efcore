@@ -14,14 +14,11 @@ namespace signalR_client
             .WithUrl("http://localhost:5000/myhub")
             .Build();
 
-            connection.Closed += async (error) =>
+            connection.Closed += (error) =>
             {
                 Console.WriteLine($"closeed {connection}");
-                await Task.Delay(new Random().Next(0, 5) * 1000);
-                await connection.StartAsync();
+                return null;
             };
-
-           
         }
 
         public async void Start()
@@ -42,26 +39,41 @@ namespace signalR_client
             });
         }
 
+        public bool IsDisconnected()
+        {
+            if (null == connection)
+                return true;
+
+            if (connection.State == HubConnectionState.Disconnected)
+                return true;
+
+            return false;
+        }
+
     }
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("client start!!!");
 
             MySignalRClient client = new MySignalRClient();
             client.Start();
 
+            Thread.Sleep(3000); // 3s
+           
             var line = "";
             while (true)
             {
                 if (line.Contains("q"))
                     break;
-                if(line.Contains("start"))
+                if (client.IsDisconnected())
+                    break;
+                if (line.Contains("start"))
                 {
-                  
+
                 }
-                Thread.Sleep(1000);
+                Thread.Sleep(999);
             }
         }
     }

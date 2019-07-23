@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using asp_signalR_efcore.Hubs;
 using asp_signalR_efcore.Models;
 using asp_signalR_efcore.Services;
+using System.Threading;
 
 namespace asp_signalR_efcore
 {
@@ -38,10 +39,11 @@ namespace asp_signalR_efcore
 
             // self services
             services.AddSingleton<IMyServices,MyServices>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,IApplicationLifetime lifetime)
         {
             if (env.IsDevelopment())
             {
@@ -51,6 +53,10 @@ namespace asp_signalR_efcore
             app.UseMvc();
             app.UseSignalR(configure=> {
                 configure.MapHub<MyHub>("/myhub");
+            });
+            lifetime.ApplicationStopped.Register(() =>
+            {
+                Console.WriteLine("server stoped.");
             });
         }
     }

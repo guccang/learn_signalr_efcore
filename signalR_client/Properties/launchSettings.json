@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "signalR_client": {
+      "commandName": "Project",
+      "commandLineArgs": "once"
+    }
+  }
+}

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.SignalR;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -10,14 +11,17 @@ namespace asp_signalR_efcore.Hubs
     public class MyHub : Hub
     {
         ILogger _log;
-        public MyHub(ILogger<MyHub> log)
+        IApplicationLifetime _lifeTime;
+        public MyHub(ILogger<MyHub> log,IApplicationLifetime lifeTime)
         {
             _log = log;
+            _lifeTime = lifeTime;
         }
 
         public string test()
         {
             sendMessage("test caller.");
+            _lifeTime.StopApplication();
             return "hello hub";
         }
 
