@@ -32,6 +32,7 @@ dotnet signalR_client.dll  > client.log &'''
     stage('deploy') {
       steps {
         sh 'echo "deploy"'
+        archiveArtifacts(artifacts: 'bin/Debug/*', onlyIfSuccessful: true)
       }
     }
   }
