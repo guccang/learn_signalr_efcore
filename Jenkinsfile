@@ -9,9 +9,9 @@ pipeline {
     }
     stage('test') {
       steps {
-        bat 'echo "run server"  && cd "asp_signalR_efcore\\bin\\Debug" && dotnet asp_signalR_efcore.dll  > server.log &'
+        bat 'echo "run server"  && cd "asp_signalR_efcore\\bin\\Debug" && start /b dotnet asp_signalR_efcore.dll  > server.log'
         sleep 3
-        bat 'echo "run client" && cd "signalR_client\\bin\\Debug"  && dotnet signalR_client.dll  > client.log &'
+        bat 'echo "run client" && cd "signalR_client\\bin\\Debug"  &&  start /b dotnet signalR_client.dll  > client.log '
         input 'check result'
       }
     }
