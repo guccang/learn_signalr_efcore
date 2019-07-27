@@ -18,20 +18,16 @@ pipeline {
     }
     stage('test') {
       steps {
-        sh '''echo "run server" 
-cd "asp_signalR_efcore\\bin\\Debug"
-dotnet asp_signalR_efcore.dll  > server.log &'''
+        bat 'echo "run server"  cd "asp_signalR_efcore\\bin\\Debug" dotnet asp_signalR_efcore.dll  > server.log &'
         sleep 3
-        sh '''echo "run client"
-cd "signalR_client\\bin\\Debug"
-dotnet signalR_client.dll  > client.log &'''
-        input 'check input'
+        bat 'echo "run client" cd "signalR_client\\bin\\Debug" dotnet signalR_client.dll  > client.log &'
+        input 'check result'
       }
     }
     stage('deploy') {
       steps {
-        sh 'echo "deploy"'
         archiveArtifacts(artifacts: '**/bin/Debug/*.*', onlyIfSuccessful: true)
+        sh 'echo "deploy"'
       }
     }
   }
