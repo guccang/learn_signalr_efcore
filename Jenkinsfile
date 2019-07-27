@@ -1,19 +1,10 @@
 pipeline {
   agent any
   stages {
-    stage('build') {
-      parallel {
-        stage('build') {
-          steps {
-            echo 'echo build'
-            bat 'dotnet publish -c Debug -o ./bin/Debug'
-          }
-        }
-        stage('docker build') {
-          steps {
-            echo 'echo docker build'
-          }
-        }
+    stage('docker build') {
+      steps {
+        echo 'echo docker build'
+        sh 'dotnet publish -c Debug -o ./bin/Debug'
       }
     }
     stage('test') {
