@@ -6,8 +6,7 @@ pipeline {
         stage('build') {
           steps {
             echo 'echo build'
-            sh '''echo "build project"
-dotnet publish -c Debug -o ./bin/Debug'''
+            bat 'dotnet publish -c Debug -o ./bin/Debug'
           }
         }
         stage('docker build') {
