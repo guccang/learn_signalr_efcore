@@ -27,7 +27,7 @@ pipeline {
     stage('deploy') {
       steps {
         archiveArtifacts(artifacts: '**/bin/Debug/*.*', onlyIfSuccessful: true)
-        sh 'echo "deploy"'
+        echo 'echo "deploy"'
       }
     }
   }
