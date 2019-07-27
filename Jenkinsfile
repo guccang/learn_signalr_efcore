@@ -5,7 +5,7 @@ pipeline {
       parallel {
         stage('build') {
           steps {
-            echo '$SERVER_PATH $CLIENT_PATH'
+            echo 'echo build'
             sh '''echo "build project"
 dotnet publish -c Debug -o ./bin/Debug'''
           }
