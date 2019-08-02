@@ -25,7 +25,7 @@ docker run --rm -v /home/jenkins/workspace/lr_efcore_test_jenkins_blueocean:/app
     }
     stage('deploy') {
       steps {
-        archiveArtifacts(artifacts: '**/bin/Debug/*.*', onlyIfSuccessful: true)
+        archiveArtifacts(artifacts: '/home/jenkins/workspace/lr_efcore_test_jenkins_blueocean/bin/*.*', onlyIfSuccessful: true)
         echo 'echo "deploy"'
       }
     }
