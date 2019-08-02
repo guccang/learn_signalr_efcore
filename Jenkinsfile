@@ -16,11 +16,10 @@ docker run --rm -v /home/jenkins/workspace/lr_efcore_test_jenkins_blueocean:/app
     stage('test') {
       steps {
         sh '''echo "run server"  
-cd "asp_signalR_efcore\\bin\\Debug" 
-dotnet asp_signalR_efcore.dll  > server.log &'''
+docker run --rm -v /home/jenkins/workspace/lr_efcore_test_jenkins_blueocean:/app mcr.microsoft.com/dotnet/core/aspnet:2.2 dotnet /app/bin/asp_signalR_efcore.dll &'''
         sleep 3
-        sh '''echo "run client" && cd "signalR_client\\bin\\Debug" 
-dotnet signalR_client.dll  > client.log  &'''
+        sh '''echo "run client" 
+docker run --rm -v /home/jenkins/workspace/lr_efcore_test_jenkins_blueocean:/app mcr.microsoft.com/dotnet/core/aspnet:2.2 dotnet /app/bin/signalR_client.dll  &'''
         input 'check running result'
       }
     }
