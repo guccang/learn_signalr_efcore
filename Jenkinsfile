@@ -10,7 +10,7 @@ pipeline {
       steps {
         echo 'echo docker build'
         sh '''echo $WORKSPACE
-docker run --rm -it -v /home/jenkins/workspace/lr_efcore_test_jenkins_blueocean:/app mcr.microsoft.com/dotnet/core/sdk:2.2 dotnet publish /app/asp_efcore.sln -o /app/bin'''
+docker run --rm -v /home/jenkins/workspace/lr_efcore_test_jenkins_blueocean:/app mcr.microsoft.com/dotnet/core/sdk:2.2 dotnet publish /app/asp_efcore.sln -o /app/bin'''
       }
     }
     stage('test') {
