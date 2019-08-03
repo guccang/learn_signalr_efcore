@@ -11,7 +11,7 @@ pipeline {
         echo 'echo docker build'
         sh '''echo $WORKSPACE
 docker run --rm -v /home/jenkins/workspace/lr_efcore_test_jenkins_blueocean:/app mcr.microsoft.com/dotnet/core/sdk:2.2 dotnet publish /app/asp_efcore.sln -o /app/bin
-docker run --rm -v /home/jenkins/workspace/lr_efcore_test_jenkins_blueocean:/app mcr.microsoft.com/dotnet/core/sdk:2.2 chmod -R 777 /app/bin'''
+docker run --rm -v /home/jenkins/workspace/lr_efcore_test_jenkins_blueocean:/app mcr.microsoft.com/dotnet/core/sdk:2.2 chmod -R 777 /app'''
       }
     }
     stage('test') {
